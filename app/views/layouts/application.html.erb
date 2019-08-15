@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>diary</title>
+  <style type="text/css" href="./style.css"></style>
+
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+  <header>
+  <nav class="#1565c0 blue darken-3">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">BLOG</a>
+      <% if user_signed_in? %>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/new">新規投稿</a></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+      </ul>
+      <% else %>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
+      <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
+      </ul>
+      <% end %>
+    </div>
+   </nav>
+  </header>
+  <% if user_signed_in? %>
+  <p class="name">ユーザー：<%= current_user.nickname %>さん</p>
+  <% end %>
+
+    <%= yield %>
+
+    <script type="text/javascript" src="./app.js"></script>
+  </body>
+</html>

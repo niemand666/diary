@@ -1,0 +1,21 @@
+<ul class="list_diary">
+  <% @diary.each do |diary| %>
+  <li>
+    <h2><%= diary.title %></h2>
+    <% if diary.image != "" %>
+      <p><img src="<%= diary.image %>"></p>
+    <% end %>
+    <p><%= diary.content %></p>
+    <p><%= diary.created_at %></p>
+  </li>
+  <% if user_signed_in? %>
+  <li>
+  <%= link_to '編集する', "/#{diary.id}/edit", method: :get %>
+  </li>
+
+  <li>
+  <%= link_to '削除する', "/#{diary.id}", method: :delete %>
+  </li>
+  <% end %>
+  <% end %>
+</ul>
